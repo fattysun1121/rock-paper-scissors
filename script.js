@@ -16,10 +16,6 @@ function computerPlay() {
     }
 }
 
-console.log(computerPlay());
-console.log(computerPlay());
-console.log(computerPlay());
-
 /**
  * Starts one round of P v C rock paper scissors and returns a string that
  * states the winner.
@@ -42,13 +38,30 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-const playerSelection = "rock";
-const computerSelection = computerPlay();
-console.log(playRound(playerSelection, computerSelection));
 /**
  * Starts a 5-round game that keeps score and records the winner or loser
  * at the end.
  */
 function game() {
+    let playerScore = 0;
+    let computerScore = 0;
 
+    for (i = 0; i < 5; i++) {
+        let gameMessage = playRound(prompt("Rock, Paper, or Scissors? "), computerPlay());
+        console.log(gameMessage);
+        if (gameMessage.charAt(4) === 'W') {
+            playerScore++;
+        } else if (gameMessage.charAt(4) === 'L') {
+            computerScore++;
+        }
+    }
+    if (playerScore > computerScore) {
+        console.log("You won the 5-round game!");
+    } else if (playerScore < computerScore) {
+        console.log("You lost the 5-round game");
+    } else {
+        console.log("The 5-round game is a tie!");
+    }
 }
+
+game();
