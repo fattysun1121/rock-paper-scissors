@@ -25,7 +25,10 @@ function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
     playerSelection = playerSelection.replace(playerSelection.charAt(0), playerSelection.charAt(0).toUpperCase());
 
-    if (playerSelection === "Rock" && computerSelection === "Scissors") {
+    // Guards the game against false input from player.
+    if (playerSelection !== "Rock" && playerSelection !== "Paper" && playerSelection !== "Scissors") {
+        return playRound(prompt("Please enter Rock, Paper, or Scissors! "), computerSelection);
+    } else if (playerSelection === "Rock" && computerSelection === "Scissors") {
         return "You Win! Rock beats Scissors";
     } else if (playerSelection === "Paper" && computerSelection === "Rock") {
         return "You Win! Paper beats Rock";
