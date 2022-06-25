@@ -1,0 +1,42 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.loader {
+  position: fixed;
+  z-index: 99;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #011032;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+
+.loader > p {
+  color: #ff1245;
+  font-size: 32px;
+  padding: 120px;
+}
+
+.loader > img {
+  ali
+}
+.loader.hidden {
+  animation: fadeOut 25s;
+  animation-fill-mode: forwards;
+}
+
+
+@keyframes fadeOut {
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  85% {
+    opacity: 100%;
+  }
+}

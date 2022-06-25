@@ -86,6 +86,36 @@ function recordScore(board) {
 }
 
 
+// set up webpage
+const loaderPara = document.querySelector('.loader > p');
+const loaderText = `Break The Game is a breakdance game similar to the game HORSE in
+       basketball. This game is usually played by two players, each of
+       which throws a small round and the other one duplicates it.
+       Players get a letter of the word "break" when they
+       fail to duplicate a round. The first one to obtain all five
+       letters of "break" loses.`
+const speed = 50;
+let i = 0;
+
+function typeWriter() {
+    if (i < loaderText.length) {
+        loaderPara.innerHTML += loaderText.charAt(i);
+        i++;
+        setTimeout(typeWriter, speed);
+    }
+}
+function showLoader() {
+    const loader = document.querySelector('.loader');
+    loader.classList.add('hidden');
+}
+
+window.addEventListener('load', () => {
+    typeWriter();
+    showLoader();
+});
+
+
+// actual game
 let playerScore = 0;
 let computerScore = 0;
 
