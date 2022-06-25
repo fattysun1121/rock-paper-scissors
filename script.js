@@ -24,21 +24,30 @@ function playRound(playerSelection, computerSelection) {
     // Modifies playerSelection so it becomes case insensitive.
     playerSelection = playerSelection.toLowerCase();
     playerSelection = playerSelection.replace(playerSelection.charAt(0), playerSelection.charAt(0).toUpperCase());
+    const roundText = document.createElement('p');
+    const div = document.querySelector('.result');
 
-    // Guards the game against false input from player.
-    if (playerSelection !== "Rock" && playerSelection !== "Paper" && playerSelection !== "Scissors") {
-        return playRound(prompt("Please enter Rock, Paper, or Scissors! "), computerSelection);
-    } else if (playerSelection === "Rock" && computerSelection === "Scissors") {
-        return "You Win! Rock beats Scissors";
+    if (playerSelection === "Rock" && computerSelection === "Scissors") {
+        roundText.textContent = "You Win! Rock beats Scissors";
     } else if (playerSelection === "Paper" && computerSelection === "Rock") {
-        return "You Win! Paper beats Rock";
+        roundText.textContent = "You Win! Paper beats Rock";
     } else if (playerSelection === "Scissors" && computerSelection === "Paper") {
-        return "You Win! Scissors beats Paper";
+        roundText.textContent = "You Win! Scissors beats Paper";
     } else if (playerSelection === computerSelection) {
-        return `You picked ${playerSelection} and the computer picked ${computerSelection}. It's a tie!`;
+        roundText.textContent = `You picked ${playerSelection} and the computer picked ${computerSelection}. It's a tie!`;
     } else {
-        return `You Lose! ${computerSelection} beats ${playerSelection}`;
+        roundText.textContent = `You Lose! ${computerSelection} beats ${playerSelection}`;
     }
+    div.innerHTML = '';
+    div.appendChild(roundText);
+
+    if (roundText.textContent.charAt(4) === 'W') {
+        playerScore++;
+    } else if (roundText.textContent.charAt(4) === 'L') {
+        computerScore++;
+    }
+
+    recordScore(div);
 }
 
 /**
@@ -46,25 +55,44 @@ function playRound(playerSelection, computerSelection) {
  * at the end.
  */
 function game() {
-    let playerScore = 0;
-    let computerScore = 0;
+    const rock = document.querySelector('.rock');
+    const paper = document.querySelector('.paper');
+    const scissors = document.querySelector('.scissors');
 
-    for (i = 0; i < 5; i++) {
-        let gameMessage = playRound(prompt("Rock, Paper, or Scissors? "), computerPlay());
-        console.log(gameMessage);
-        if (gameMessage.charAt(4) === 'W') {
-            playerScore++;
-        } else if (gameMessage.charAt(4) === 'L') {
-            computerScore++;
-        }
-    }
-    if (playerScore > computerScore) {
-        console.log("You won the 5-round game!");
-    } else if (playerScore < computerScore) {
-        console.log("You lost the 5-round game");
-    } else {
-        console.log("The 5-round game is a tie!");
-    }
+    rock.addEventListener('click', () => playRound('rock', computerPlay()));
+    paper.addEventListener('click', () => playRound('paper', computerPlay()));
+    scissors.addEventListener('click', () => playRound('scissors', computerPlay()));
 }
 
+/**
+ * Helper function to record the score and declare winner of a 5-point game.
+ */
+function recordScore(board) {
+    const gameText = document.createElement('p');
+    if (playerScore === 5) {
+        gameText.textContent = 'The player is the winner of the game.';
+
+        playerScore = 0;
+        computerScore = 0;
+    } else if (computerScore === 5) {
+        gameText.textContent = 'The computer is the winner of the game.';
+
+        playerScore = 0;
+        computerScore = 0;
+    } else {
+        gameText.textContent = `Player Score: ${playerScore} Computer Score: ${computerScore}`;
+    }
+    board.appendChild(gameText);
+}
+
+
+let playerScore = 0;
+let computerScore = 0;
+
 game();
+
+
+
+
+
+
