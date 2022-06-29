@@ -6,9 +6,25 @@ body {
 
 button {
   color: #ff1245;
-  font-size: 24px;
-  border-radius: 36px;
-  padding: 8px;
+  background-color: #2f4689;
+  font-size: 16px;
+  border-radius: 15px;
+  padding: 15px 25px;
+  text-align: center;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  box-shadow: 0 9px #999;
+}
+
+button:hover {
+  background-color: rgb(34, 4, 47);
+}
+
+button:active {
+  background-color: rgb(34, 4, 47);
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
 }
 
 .loader {
@@ -29,11 +45,8 @@ button {
   padding: 120px;
 }
 
-/**
- * Change from 25s -> 0.1s for testing.
- */
 .loader.hidden {
-  animation: fadeOut 0.1s;
+  animation: fadeOut 25s;
   animation-fill-mode: forwards;
 }
 
@@ -108,3 +121,4 @@ button {
   margin: 108px;
   text-align: center;
 }
+
