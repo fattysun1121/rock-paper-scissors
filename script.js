@@ -42,9 +42,11 @@ function playRound(playerSelection, computerSelection) {
     div.appendChild(roundText);
 
     if (roundText.textContent.charAt(4) === 'W') {
-        playerScore++;
+        const letter = document.querySelector(`.you-break-block > .${breakArr[playerScore++]}`);
+        letter.classList.add('letter-shown');
     } else if (roundText.textContent.charAt(4) === 'L') {
-        computerScore++;
+        const letter = document.querySelector(`.machine-break-block > .${breakArr[computerScore++]}`);
+        letter.classList.add('letter-shown');
     }
 
     recordScore(div);
@@ -64,6 +66,15 @@ function game() {
     scissors.addEventListener('click', () => playRound('scissors', computerPlay()));
 }
 
+function hideLetters() {
+    for (const char of breakArr) {
+        const playerLetter = document.querySelector(`.you-break-block > .${char}`);
+        const computerLetter = document.querySelector(`.machine-break-block > .${char}`);
+        playerLetter.classList.remove('letter-shown');
+        computerLetter.classList.remove('letter-shown');
+    }
+
+}
 /**
  * Helper function to record the score and declare winner of a 5-point game.
  */
@@ -71,12 +82,12 @@ function recordScore(board) {
     const gameText = document.createElement('p');
     if (playerScore === 5) {
         gameText.textContent = 'The player is the winner of the game.';
-
+        hideLetters();
         playerScore = 0;
         computerScore = 0;
     } else if (computerScore === 5) {
         gameText.textContent = 'The computer is the winner of the game.';
-
+        hideLetters();
         playerScore = 0;
         computerScore = 0;
     } else {
@@ -99,6 +110,7 @@ const loaderText = `Break The Game is a breakdance game similar to the game HORS
        letters of "break" loses.`
 const speed = 50;
 let i = 0;
+let breakArr = ['B', 'R', 'E', 'A', 'K'];
 
 function typeWriter() {
     if (i < loaderText.length) {
@@ -113,16 +125,17 @@ function showLoader() {
 }
 
 function setUpBreak() {
-    let breakArr = ['B', 'R', 'E', 'A', 'K'];
-    const you = document.querySelector('.you > .break-block');
-    const machine = document.querySelector('.machine > .break-block');
+    const you = document.querySelector('.you > .you-break-block');
+    const machine = document.querySelector('.machine > .machine-break-block');
     for (const char of breakArr) {
         const span1 = document.createElement('span');
         const span2 = document.createElement('span');
         span1.textContent = char;
         span1.classList.add('break');
+        span1.classList.add(char);
         span2.textContent = char;
         span2.classList.add('break');
+        span2.classList.add(char);
         you.appendChild(span1);
         machine.appendChild(span2);
     }

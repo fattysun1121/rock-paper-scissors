@@ -4,6 +4,13 @@ body {
   color: #ff1245;
 }
 
+button {
+  color: #ff1245;
+  font-size: 24px;
+  border-radius: 36px;
+  padding: 8px;
+}
+
 .loader {
   position: fixed;
   z-index: 99;
@@ -29,7 +36,6 @@ body {
   animation: fadeOut 0.1s;
   animation-fill-mode: forwards;
 }
-
 
 @keyframes fadeOut {
   100% {
@@ -60,8 +66,9 @@ body {
   flex-direction: column;
   gap: 96px;
   margin: 0;
-  padding-top: 144px;
+  padding-top: 244px;
 }
+
 .first-row {
   display: flex;
   justify-content: center;
@@ -74,9 +81,30 @@ body {
 
 .main-page {
   display: flex;
-  padding: 108px 0px 0px 72px;
+}
+
+.you {
+  margin: 0;
+  padding: 108px 0 0 76px;
+}
+
+.machine {
+  margin: 0;
+  padding: 108px 76px 0 0;
 }
 
 .break {
   border: 1px solid white;
+  font-size: 64px;
+  padding: 8px;
+  color: #011032;
+}
+
+.letter-shown {
+  color: #ff1245;
+}
+
+.result {
+  margin: 108px;
+  text-align: center;
 }
