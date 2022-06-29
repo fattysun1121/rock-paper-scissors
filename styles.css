@@ -1,5 +1,7 @@
 body {
   font-family: 'Open Sans', sans-serif;
+  background-color: #011032;
+  color: #ff1245;
 }
 
 .loader {
@@ -9,23 +11,22 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: #011032;
   display: flex;
   flex-direction: row-reverse;
   justify-content: space-between;
+  background-color: #011032;
 }
 
 .loader > p {
-  color: #ff1245;
   font-size: 32px;
   padding: 120px;
 }
 
-.loader > img {
-  ali
-}
+/**
+ * Change from 25s -> 0.1s for testing.
+ */
 .loader.hidden {
-  animation: fadeOut 25s;
+  animation: fadeOut 0.1s;
   animation-fill-mode: forwards;
 }
 
@@ -39,4 +40,43 @@ body {
   85% {
     opacity: 100%;
   }
+}
+
+.unselectable {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+.buttons {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 96px;
+  margin: 0;
+  padding-top: 144px;
+}
+.first-row {
+  display: flex;
+  justify-content: center;
+  gap: 96px;
+}
+
+.second-row {
+  align-self: center;
+}
+
+.main-page {
+  display: flex;
+  padding: 108px 0px 0px 72px;
+}
+
+.break {
+  border: 1px solid white;
 }

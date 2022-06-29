@@ -87,6 +87,9 @@ function recordScore(board) {
 
 
 // set up webpage
+
+
+
 const loaderPara = document.querySelector('.loader > p');
 const loaderText = `Break The Game is a breakdance game similar to the game HORSE in
        basketball. This game is usually played by two players, each of
@@ -109,9 +112,26 @@ function showLoader() {
     loader.classList.add('hidden');
 }
 
+function setUpBreak() {
+    let breakArr = ['B', 'R', 'E', 'A', 'K'];
+    const you = document.querySelector('.you > .break-block');
+    const machine = document.querySelector('.machine > .break-block');
+    for (const char of breakArr) {
+        const span1 = document.createElement('span');
+        const span2 = document.createElement('span');
+        span1.textContent = char;
+        span1.classList.add('break');
+        span2.textContent = char;
+        span2.classList.add('break');
+        you.appendChild(span1);
+        machine.appendChild(span2);
+    }
+}
+
 window.addEventListener('load', () => {
     typeWriter();
     showLoader();
+    setUpBreak();
 });
 
 
